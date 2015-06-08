@@ -1,6 +1,37 @@
 
 <div>
-  <%= @project.name rescue 'bibik' %>
+  Container Types: <%= @container_type %>
 </div>
 
+<table id="rfb_file_bucket" class="list">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Type</th>
+      <th>Downloads</th>
+      <th>Description</th>
+      <th>Created</th>
+      <th>Author</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attachments.each do |attachment| %>
+      <tr>
+        <td><%= attachment.container_type %></td>
+        <td><%= attachment.filename %></td>
+        <td><%= attachment.filesize %></td>
+        <td><%= attachment.content_type %></td>
+        <td><%= attachment.downloads %></td>
+        <td><%= attachment.description %></td>
+        <td><%= attachment.created_on %></td>
+        <td><%= attachment.author.name %></td>
+        <td>X</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
