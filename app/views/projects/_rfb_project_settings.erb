@@ -1,0 +1,22 @@
+<% settings = RfbProjectSetting.settings_for_project(@project) %>
+
+<%=
+  form_for @project,
+    :url => {:action => 'rfb_project_settings', :id => @project},
+    :html => {:id => 'rfb_project_settings-form', :method => :post} do |f|
+%>
+
+  <%= hidden_field_tag 'settings[project_id]', @project.id %>
+  <%=
+    render :partial => 'shared/redmine_file_bucket_settings', :locals => {
+      :settings => settings
+    }
+  %>
+
+  <p>
+    <%= submit_tag l(:button_save) %>
+    <%= submit_tag l(:button_reset), :name => :reset, :style => 'margin-left: 20px;' %>
+  </p>
+
+<% end %>
+

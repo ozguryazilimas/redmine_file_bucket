@@ -1,0 +1,18 @@
+# Turkish strings go here
+tr:
+  label_file_bucket: 'Tüm Dosyalar'
+  permission_rfb_file_bucket_view: 'Dosyaları görüntüle'
+  permission_rfb_file_bucket_configure: 'Ayarları yönet'
+  redmine_file_bucket:
+    settings:
+      header: 'Dosya Listesi Ayarları'
+      info: 'Tüm dosya listesinde hangi tür dosyaların listeleneceği ayarları.'
+      issue_enabled: 'İşler'
+      wiki_page_enabled: 'Wiki Sayfaları'
+      document_enabled: 'Belgeler'
+      project_enabled: 'Projeler'
+      subproject_enabled: 'Altprojeler'
+    project_settings:
+      label_file_bucket: 'Tüm Dosyalar'
+      error_update_not_successful: 'Proje ayarları güncellenirken bir sorun oluştu'
+

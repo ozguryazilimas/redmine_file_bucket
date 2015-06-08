@@ -1,0 +1,18 @@
+# English strings go here
+en:
+  label_file_bucket: 'All Files'
+  permission_rfb_file_bucket_view: 'View files'
+  permission_rfb_file_bucket_configure: 'Manage settings'
+  redmine_file_bucket:
+    settings:
+      header: 'File List Settings'
+      info: 'Settings to define what kind of files will be included in the all file list.'
+      issue_enabled: 'Issues'
+      wiki_page_enabled: 'Wiki Pages'
+      document_enabled: 'Documents'
+      project_enabled: 'Projects'
+      subproject_enabled: 'Subprojects'
+    project_settings:
+      label_file_bucket: 'All Files'
+      error_update_not_successful: 'Unable to update project settings'
+

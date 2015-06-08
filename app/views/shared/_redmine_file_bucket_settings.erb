@@ -1,0 +1,24 @@
+<fieldset class="box">
+  <legend>
+    <b>
+      <%= l('redmine_file_bucket.settings.header') %>
+    </b>
+  </legend>
+
+  <div class="tabular settings">
+    <%= h l('redmine_file_bucket.settings.info') %>
+    <br><br>
+
+    <%
+        RfbProjectSetting::AVAILABLE_OPTIONS.each do |setting_key|
+          setting_key_str = "#{setting_key}_enabled"
+          setting_key_sym = setting_key_str.to_sym
+    %>
+      <p>
+      <%= content_tag :label, l("redmine_file_bucket.settings.#{setting_key_str}") %>
+        <%= check_box_tag "settings[#{setting_key_str}]", 1, settings[setting_key_sym] %>
+      </p>
+    <% end %>
+  </div>
+</fieldset>
+
