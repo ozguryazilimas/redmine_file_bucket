@@ -1,6 +1,6 @@
 # Turkish strings go here
 tr:
-  label_file_bucket: 'Tüm Dosyalar'
+  label_file_bucket: 'Eklentiler'
   label_first: 'İlk'
   label_last: 'Son'
   label_no_results_found: 'Sonuç bulunamadı'
@@ -19,6 +19,6 @@ tr:
       news_enabled: 'Haberler'
       subproject_enabled: 'Altprojeler'
     project_settings:
-      label_file_bucket: 'Tüm Dosyalar'
+      label_file_bucket: 'Eklentiler'
       error_update_not_successful: 'Proje ayarları güncellenirken bir sorun oluştu'
 

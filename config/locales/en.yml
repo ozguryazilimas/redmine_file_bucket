@@ -1,6 +1,6 @@
 # English strings go here
 en:
-  label_file_bucket: 'All Files'
+  label_file_bucket: 'Attachments'
   label_first: 'First'
   label_last: 'Last'
   label_no_results_found: 'No results found'
@@ -19,6 +19,6 @@ en:
       news_enabled: 'News'
       subproject_enabled: 'Subprojects'
     project_settings:
-      label_file_bucket: 'All Files'
+      label_file_bucket: 'Attachments'
       error_update_not_successful: 'Unable to update project settings'
 
