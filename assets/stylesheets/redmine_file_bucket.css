@@ -1,0 +1,53 @@
+
+.dataTables_filter input[type="search"] {
+  border: 0 none;
+  border-radius: 20px 20px 20px 20px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+  // color: #D7D7D7;
+  // font: bold 12px Arial,Helvetica,Sans-serif;
+  height: 21px;
+  margin-bottom: 1px;
+  padding: 3px 0 3px 35px;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.7s ease 0s;
+  width: 200px;
+  background-color: #E3E3E3;
+  color: grey;
+  font-weight: bold;
+}
+
+.dataTables_filter input[type="search"]:focus {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
+  margin-bottom: 1px;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  background-color: #DDF0E9;
+  color: grey;
+  font-weight: bold;
+}
+
+
+.rfb_container_checkbox {
+  margin-left: 20px;
+}
+
+#rfb_file_bucket_length,
+#rfb_file_bucket_filter {
+  margin-bottom: 10px;
+}
+
+select[name=rfb_file_bucket_length] {
+  padding: 3px;
+}
+
+
+table#rfb_file_bucket {
+}
+
+table#rfb_file_bucket thead tr {
+  background: linear-gradient(#FFF, #BCBCBC) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+  // background: linear-gradient(#BCBCBC, #FFF) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+  color: #000;
+
+}
+

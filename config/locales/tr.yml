@@ -1,6 +1,10 @@
 # Turkish strings go here
 tr:
   label_file_bucket: 'Tüm Dosyalar'
+  label_first: 'İlk'
+  label_last: 'Son'
+  label_no_results_found: 'Sonuç bulunamadı'
+  field_location: 'Konum'
   permission_rfb_file_bucket_view: 'Dosyaları görüntüle'
   permission_rfb_file_bucket_configure: 'Ayarları yönet'
   redmine_file_bucket:
@@ -11,6 +15,8 @@ tr:
       wiki_page_enabled: 'Wiki Sayfaları'
       document_enabled: 'Belgeler'
       project_enabled: 'Projeler'
+      version_enabled: 'Sürümler'
+      news_enabled: 'Haberler'
       subproject_enabled: 'Altprojeler'
     project_settings:
       label_file_bucket: 'Tüm Dosyalar'

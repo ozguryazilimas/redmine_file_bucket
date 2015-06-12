@@ -1,6 +1,10 @@
 # English strings go here
 en:
   label_file_bucket: 'All Files'
+  label_first: 'First'
+  label_last: 'Last'
+  label_no_results_found: 'No results found'
+  field_location: 'Location'
   permission_rfb_file_bucket_view: 'View files'
   permission_rfb_file_bucket_configure: 'Manage settings'
   redmine_file_bucket:
@@ -11,6 +15,8 @@ en:
       wiki_page_enabled: 'Wiki Pages'
       document_enabled: 'Documents'
       project_enabled: 'Projects'
+      version_enabled: 'Versions'
+      news_enabled: 'News'
       subproject_enabled: 'Subprojects'
     project_settings:
       label_file_bucket: 'All Files'

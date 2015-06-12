@@ -1,37 +1,70 @@
+<% delete_allowed = User.current.allowed_to?(:manage_files, @project) %>
 
-<div>
-  Container Types: <%= @container_type %>
+<h2>
+  <%= l('redmine_file_bucket.project_settings.label_file_bucket') %>
+</h2>
+
+<div id="rfb_container_list">
+  <% @container_type.each do |container| %>
+    <%= check_box_tag "rfb_#{container}_checkbox", 1, true, :class => 'rfb_container_checkbox', 'data-container_type' => container %>
+    <%= content_tag :label, container %>
+  <% end %>
 </div>
 
-<table id="rfb_file_bucket" class="list">
+<table id="rfb_file_bucket">
   <thead>
     <tr>
-      <th>Category</th>
-      <th>Name</th>
-      <th>Size</th>
-      <th>Type</th>
-      <th>Downloads</th>
-      <th>Description</th>
-      <th>Created</th>
-      <th>Author</th>
-      <th>&nbsp;</th>
+      <th><%= l(:field_type) %></th>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_filesize) %></th>
+      <th><%= l(:field_description) %></th>
+      <th><%= l(:field_location) %></th>
+      <th><%= l(:field_author) %></th>
+      <th><%= l(:field_created_on) %></th>
+      <th><%= l(:field_downloads) %></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @attachments.each do |attachment| %>
+    <% @attachments.each do |file| %>
       <tr>
-        <td><%= attachment.container_type %></td>
-        <td><%= attachment.filename %></td>
-        <td><%= attachment.filesize %></td>
-        <td><%= attachment.content_type %></td>
-        <td><%= attachment.downloads %></td>
-        <td><%= attachment.description %></td>
-        <td><%= attachment.created_on %></td>
-        <td><%= attachment.author.name %></td>
-        <td>X</td>
+        <td><%= file.container_type %></td>
+        <td><%= link_to_attachment file, :download => true, :title => file.description, :title => file.content_type %></td>
+        <td><%= number_to_human_size(file.filesize) %></td>
+        <td><%= file.description %></td>
+        <td><%= link_to_attachment_container(file) %></td>
+        <td><%= file.author.name %></td>
+        <td><%= format_time(file.created_on) %></td>
+        <td><%= file.downloads %></td>
+        <td>
+          <%= link_to(image_tag('delete.png'), attachment_path(file), :data => {:confirm => l(:text_are_you_sure)}, :method => :delete) if delete_allowed %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script language="javascript" type="text/javascript">
+
+var dt_str = {
+  search: "<%= l(:label_search) %>",
+  empty_table: "<%= l(:label_no_results_found) %>",
+  first: "<%= l(:first) %>",
+  last: "<%= l(:label_last) %>",
+  next: "<%= l(:label_next) %>",
+  previous: "<%= l(:label_previous) %>",
+  info: "<%= l(:label_total) %>: _TOTAL_",
+};
+
+  var dt_data = [];
+</script>
+
+
+<%= javascript_include_tag 'console_fallback', :plugin => 'redmine_file_bucket' %>
+<%= javascript_include_tag 'dataTables/jquery.dataTables' %>
+<%= javascript_include_tag 'redmine_file_bucket', :plugin => 'redmine_file_bucket' %>
+
+<%= stylesheet_link_tag 'dataTables/jquery.dataTables' %>
+<%= stylesheet_link_tag 'redmine_file_bucket', :plugin => 'redmine_file_bucket' %>
 

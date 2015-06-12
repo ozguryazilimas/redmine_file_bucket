@@ -7,6 +7,8 @@ class CreateModelBase < ActiveRecord::Migration
       t.boolean :wiki_page_enabled, :default => true, :null => false
       t.boolean :document_enabled, :default => true, :null => false
       t.boolean :project_enabled, :default => true, :null => false
+      t.boolean :version_enabled, :default => false, :null => false
+      t.boolean :news_enabled, :default => false, :null => false
       t.boolean :subproject_enabled, :default => false, :null => false
 
       t.timestamps :null => false

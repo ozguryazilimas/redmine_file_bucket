@@ -15,7 +15,7 @@
           setting_key_sym = setting_key_str.to_sym
     %>
       <p>
-      <%= content_tag :label, l("redmine_file_bucket.settings.#{setting_key_str}") %>
+        <%= content_tag :label, l("redmine_file_bucket.settings.#{setting_key_str}") %>
         <%= check_box_tag "settings[#{setting_key_str}]", 1, settings[setting_key_sym] %>
       </p>
     <% end %>

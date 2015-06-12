@@ -6,7 +6,9 @@ class RfbProjectSetting < ActiveRecord::Base
     :issue,
     :wiki_page,
     :document,
-    :project
+    :project,
+    :version,
+    :news
   ]
 
   PROJECT_OPTIONS = [
@@ -16,8 +18,8 @@ class RfbProjectSetting < ActiveRecord::Base
   AVAILABLE_OPTIONS = ATTACHMENT_CONTENT_TYPES + PROJECT_OPTIONS
 
 
-  attr_accessible :project_id, :issue_enabled, :wiki_page_enabled, :document_enabled, :project_enabled,
-    :subproject_enabled
+  attr_accessible :project_id, :subproject_enabled,
+    *ATTACHMENT_CONTENT_TYPES.map{|k| "#{k.to_s}_enabled".to_sym}
 
 
   scope :for_project, ->(project) {
