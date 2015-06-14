@@ -2,6 +2,16 @@
 class RfbProjectSetting < ActiveRecord::Base
   unloadable
 
+  LOCALIZED_OPTION_TYPE = {
+    'Subproject' => :label_subproject_plural,
+    'Issue' => :label_issue,
+    'WikiPage' => :label_wiki_page,
+    'Document' => :label_document,
+    'Project' => :label_project,
+    'Version' => :label_version,
+    'News' => :label_news
+  }
+
   ATTACHMENT_CONTENT_TYPES = [
     :issue,
     :wiki_page,

@@ -1,4 +1,4 @@
-<% delete_allowed = User.current.allowed_to?(:manage_files, @project) %>
+<% @delete_allowed = User.current.allowed_to?(:manage_files, @project) %>
 
 <h2>
   <%= l('redmine_file_bucket.project_settings.label_file_bucket') %>
@@ -6,12 +6,13 @@
 
 <div id="rfb_container_list">
   <% @container_type.each do |container| %>
-    <%= check_box_tag "rfb_#{container}_checkbox", 1, true, :class => 'rfb_container_checkbox', 'data-container_type' => container %>
-    <%= content_tag :label, container %>
+    <% humanized_container_type = humanize_option_type(container) %>
+    <%= check_box_tag "rfb_#{container}_checkbox", 1, true, :class => 'rfb_container_checkbox', 'data-container_type' => humanized_container_type %>
+    <%= content_tag :label, humanized_container_type %>
   <% end %>
 </div>
 
-<table id="rfb_file_bucket">
+<table id="rfb_file_bucket" class="stripe" width="100%" cellspacing="0">
   <thead>
     <tr>
       <th><%= l(:field_type) %></th>
@@ -19,6 +20,7 @@
       <th><%= l(:field_filesize) %></th>
       <th><%= l(:field_description) %></th>
       <th><%= l(:field_location) %></th>
+      <th><%= l(:field_subproject) %></th>
       <th><%= l(:field_author) %></th>
       <th><%= l(:field_created_on) %></th>
       <th><%= l(:field_downloads) %></th>
@@ -27,21 +29,6 @@
   </thead>
 
   <tbody>
-    <% @attachments.each do |file| %>
-      <tr>
-        <td><%= file.container_type %></td>
-        <td><%= link_to_attachment file, :download => true, :title => file.description, :title => file.content_type %></td>
-        <td><%= number_to_human_size(file.filesize) %></td>
-        <td><%= file.description %></td>
-        <td><%= link_to_attachment_container(file) %></td>
-        <td><%= file.author.name %></td>
-        <td><%= format_time(file.created_on) %></td>
-        <td><%= file.downloads %></td>
-        <td>
-          <%= link_to(image_tag('delete.png'), attachment_path(file), :data => {:confirm => l(:text_are_you_sure)}, :method => :delete) if delete_allowed %>
-        </td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
 
@@ -55,9 +42,15 @@ var dt_str = {
   next: "<%= l(:label_next) %>",
   previous: "<%= l(:label_previous) %>",
   info: "<%= l(:label_total) %>: _TOTAL_",
+  yes: "<%= l(:general_text_Yes) %>",
+  no: "<%= l(:general_text_No) %>",
+  subprojects: "<%= l(:label_subproject_plural) %>"
 };
 
-  var dt_data = [];
+var dt_data = <%= raw prepare_attachments_for_bucket(@attachments) %>;
+var container_subproject_enabled = <%= @container_type.include?('Subproject') %>;
+var checked_containers = <%= raw @container_type.map{|k| humanize_option_type(k)} %>;
+
 </script>
 
 

@@ -1,5 +1,6 @@
 
 class FileBucketController < ApplicationController
+  unloadable
 
   before_filter :find_project_by_project_id, :only => [:index]
   before_filter :authorize
@@ -7,8 +8,8 @@ class FileBucketController < ApplicationController
   def index
     settings = RfbProjectSetting.settings_for_project(@project)
     @container_type = settings.active_container_type
-    @attachments = prepare_attachments(@project, @container_type)
     @include_children = settings.subproject_enabled
+    @attachments = prepare_attachments(@project, @container_type, @include_children)
 
     respond_to do |format|
       format.html
@@ -32,7 +33,7 @@ class FileBucketController < ApplicationController
         where_arr << "container_type = 'Project' AND container_id IN (?)"
 
         if include_children
-          project.self_and_descendants.ids
+          where_id_arr << project.self_and_descendants.ids
         else
           where_id_arr << [project.id]
         end
@@ -40,7 +41,7 @@ class FileBucketController < ApplicationController
         where_arr << "container_type = 'Issue' AND container_id IN (?)"
 
         if include_children
-          project.self_and_descendants.joins(:issues).pluck('issues.id')
+          where_id_arr << project.self_and_descendants.joins(:issues).pluck('issues.id')
         else
           where_id_arr << project.issue_ids
         end
@@ -48,7 +49,7 @@ class FileBucketController < ApplicationController
         where_arr << "container_type = 'Document' AND container_id IN (?)"
 
         if include_children
-          project.self_and_descendants.joins(:documents).pluck('documents.id')
+          where_id_arr << project.self_and_descendants.joins(:documents).pluck('documents.id')
         else
           where_id_arr << project.document_ids
         end
@@ -56,7 +57,7 @@ class FileBucketController < ApplicationController
         where_arr << "container_type = 'WikiPage' AND container_id IN (?)"
 
         if include_children
-          project.self_and_descendants.joins(:wiki => :pages).pluck('wiki_pages.id')
+          where_id_arr << project.self_and_descendants.joins(:wiki => :pages).pluck('wiki_pages.id')
         else
           where_id_arr << project.wiki.page_ids
         end

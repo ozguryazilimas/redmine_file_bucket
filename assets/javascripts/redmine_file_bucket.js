@@ -1,14 +1,46 @@
 
 var file_bucket_table;
 
+$.fn.dataTable.ext.search.push(
+  function(settings, data, dataIndex) {
+    var is_subproject_matching = true;
+
+    if (container_subproject_enabled) {
+      var subprojects_checked = checked_containers.indexOf(dt_str.subprojects) > -1;
+
+      if (!subprojects_checked) {
+        is_subproject_matching = data[5] == dt_str.no;
+      }
+    }
+
+    var is_container_matching = checked_containers.indexOf(data[0]) > -1;
+    console.log("container matching: " + is_container_matching);
+    console.log("subproject matching: " + is_subproject_matching);
+    return (is_container_matching && is_subproject_matching);
+  }
+);
+
 $(function() {
 
   file_bucket_table = $('table#rfb_file_bucket').DataTable({
-    // autoWidth: false,
     // pagingType: 'full_numbers',
+    autoWidth: false,
     iDisplayLength: 25,
     bPaginate: true,
     bSearchable: true,
+    order: [[1, 'asc']],
+    columns: [
+      {data: 'container_type_formatted'},
+      {data: 'file_name'},
+      {data: 'file_size'},
+      {data: 'description'},
+      {data: 'location'},
+      {data: 'subproject'},
+      {data: 'author'},
+      {data: 'created_on'},
+      {data: 'downloads'},
+      {data: 'action'}
+    ],
     language: {
       search: '',
       lengthMenu: "_MENU_",
@@ -28,11 +60,14 @@ $(function() {
   });
 
   $('.dataTables_filter input').attr("placeholder", dt_str.search);
+  file_bucket_table.rows.add(dt_data).draw();
 
   $('.rfb_container_checkbox').on('change', function(k) {
-    var is_checked = $(this).is(':checked');
-    var container_type = $(this).data('container_type');
-    console.log(container_type + ': ' + is_checked);
+    checked_containers = $('.rfb_container_checkbox:checked').map(function() {
+      return $(this).data('container_type')
+    }).get();
+
+    file_bucket_table.draw();
   });
 
 });
