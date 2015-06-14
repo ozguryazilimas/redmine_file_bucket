@@ -3,6 +3,7 @@ var file_bucket_table;
 
 $.fn.dataTable.ext.search.push(
   function(settings, data, dataIndex) {
+    var is_container_matching = checked_containers.indexOf(data[0]) > -1;
     var is_subproject_matching = true;
 
     if (container_subproject_enabled) {
@@ -13,9 +14,6 @@ $.fn.dataTable.ext.search.push(
       }
     }
 
-    var is_container_matching = checked_containers.indexOf(data[0]) > -1;
-    console.log("container matching: " + is_container_matching);
-    console.log("subproject matching: " + is_subproject_matching);
     return (is_container_matching && is_subproject_matching);
   }
 );

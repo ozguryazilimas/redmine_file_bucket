@@ -12,6 +12,15 @@ class RfbProjectSetting < ActiveRecord::Base
     'News' => :label_news
   }
 
+  PERMISSION_FOR_CONTENT = {
+    :issue => :view_issues,
+    :wiki_page => :view_wiki_pages,
+    :document => :view_documents,
+    :project => :view_files,
+    :version => :view_files,
+    :news => :view_news
+  }
+
   ATTACHMENT_CONTENT_TYPES = [
     :issue,
     :wiki_page,
@@ -41,14 +50,22 @@ class RfbProjectSetting < ActiveRecord::Base
     for_project(proj_id).first_or_initialize(RedmineFileBucket.settings)
   }
 
+  def allowed_content_types_for_user(proj_id, user = User.current)
+    project = Project.find(proj_id)
+    user.roles_for_project(project).map{|k| k.permissions}.flatten.uniq
+  end
 
   def active_container_type
     active_list = []
+    user_perms = allowed_content_types_for_user(self.send(:project_id))
 
     AVAILABLE_OPTIONS.each do |opt|
       symbolized = "#{opt.to_s}_enabled"
       container_type = opt.to_s.titleize.gsub(' ', '')
-      active_list << container_type if self.send(symbolized)
+
+      if self.send(symbolized) && (PROJECT_OPTIONS.include?(opt) || user_perms.include?(PERMISSION_FOR_CONTENT[opt]))
+        active_list << container_type
+      end
     end
 
     active_list
