@@ -41,7 +41,16 @@ select[name=rfb_file_bucket_length] {
 }
 
 
+#rfb_container_list {
+  margin: 0 auto;
+  width: 700px;
+}
+
 table#rfb_file_bucket {
+}
+
+table#rfb_file_bucket > tbody > tr.odd {
+  background-color: #F3F3F3;
 }
 
 table#rfb_file_bucket thead tr {

@@ -7,12 +7,14 @@
 <div id="rfb_container_list">
   <% @container_type.each do |container| %>
     <% humanized_container_type = humanize_option_type(container) %>
-    <%= check_box_tag "rfb_#{container}_checkbox", 1, true, :class => 'rfb_container_checkbox', 'data-container_type' => humanized_container_type %>
-    <%= content_tag :label, humanized_container_type %>
+    <%= label_tag "rfb_#{container}_checkbox" do %>
+      <%= check_box_tag "rfb_#{container}_checkbox", 1, true, :class => 'rfb_container_checkbox', 'data-container_type' => humanized_container_type %>
+      <%= humanized_container_type %>
+    <% end %>
   <% end %>
 </div>
 
-<table id="rfb_file_bucket" class="stripe" width="100%" cellspacing="0">
+<table id="rfb_file_bucket" width="100%" cellspacing="0">
   <thead>
     <tr>
       <th><%= l(:field_type) %></th>
@@ -23,7 +25,7 @@
       <th><%= l(:field_subproject) %></th>
       <th><%= l(:field_author) %></th>
       <th><%= l(:field_created_on) %></th>
-      <th><%= l(:field_downloads) %></th>
+      <th><%= l(:label_downloads_abbr) %></th>
       <th></th>
     </tr>
   </thead>
@@ -44,7 +46,8 @@ var dt_str = {
   info: "<%= l(:label_total) %>: _TOTAL_",
   yes: "<%= l(:general_text_Yes) %>",
   no: "<%= l(:general_text_No) %>",
-  subprojects: "<%= l(:label_subproject_plural) %>"
+  subprojects: "<%= l(:label_subproject_plural) %>",
+  all: "<%= l(:label_all) %>"
 };
 
 var dt_data = <%= raw prepare_attachments_for_bucket(@attachments) %>;

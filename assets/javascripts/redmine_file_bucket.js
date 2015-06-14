@@ -10,7 +10,7 @@ $.fn.dataTable.ext.search.push(
       var subprojects_checked = checked_containers.indexOf(dt_str.subprojects) > -1;
 
       if (!subprojects_checked) {
-        is_subproject_matching = data[5] == dt_str.no;
+        is_subproject_matching = data[5] == '';
       }
     }
 
@@ -23,7 +23,7 @@ $(function() {
   file_bucket_table = $('table#rfb_file_bucket').DataTable({
     // pagingType: 'full_numbers',
     autoWidth: false,
-    iDisplayLength: 25,
+    lengthMenu: [[50, 100, 250, -1], [50, 100, 250, dt_str.all]],
     bPaginate: true,
     bSearchable: true,
     order: [[1, 'asc']],
@@ -53,8 +53,7 @@ $(function() {
         next: dt_str.next,
         previous: dt_str.previous
       }
-    },
-
+    }
   });
 
   $('.dataTables_filter input').attr("placeholder", dt_str.search);

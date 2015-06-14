@@ -41,6 +41,14 @@ module FileBucketHelper
     link_to attachment.project.name, project_path(attachment.project.id)
   end
 
+  def link_to_subproject_if_exist(target_project)
+    if @project.id == target_project.id
+      ''
+    else
+      link_to target_project.name, project_path(target_project.id)
+    end
+  end
+
   def prepare_attachments_for_bucket(attachments)
     attachments.map do |file|
       {
@@ -53,7 +61,7 @@ module FileBucketHelper
         :author => file.author.name,
         :created_on => format_time(file.created_on),
         :downloads => file.downloads,
-        :subproject => (@project.id == file.project.id) ? l(:general_text_No) : l(:general_text_Yes),
+        :subproject => link_to_subproject_if_exist(file.project),
         :action => (link_to(image_tag('delete.png'), attachment_path(file), :data => {:confirm => l(:text_are_you_sure)}, :method => :delete) if @delete_allowed)
       }
     end.to_json

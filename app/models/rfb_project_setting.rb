@@ -18,7 +18,7 @@ class RfbProjectSetting < ActiveRecord::Base
     :document => :view_documents,
     :project => :view_files,
     :version => :view_files,
-    :news => :view_news
+    :news => :comment_news # view_news is not used much anyway
   }
 
   ATTACHMENT_CONTENT_TYPES = [
