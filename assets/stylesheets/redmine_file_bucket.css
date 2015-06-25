@@ -36,9 +36,11 @@
   margin-bottom: 10px;
 }
 
+/*
 select[name=rfb_file_bucket_length] {
   padding: 3px;
 }
+*/
 
 
 #rfb_container_list {
