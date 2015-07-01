@@ -53,6 +53,14 @@ class FileBucketController < ApplicationController
         else
           where_id_arr << project.document_ids
         end
+      when 'News'
+        where_arr << "container_type = 'News' AND container_id IN (?)"
+
+        if include_children
+          where_id_arr << project.self_and_descendants.joins(:news).pluck('news.id')
+        else
+          where_id_arr << project.news_ids
+        end
       when 'WikiPage'
         where_arr << "container_type = 'WikiPage' AND container_id IN (?)"
 
