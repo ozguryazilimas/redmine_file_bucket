@@ -5,8 +5,8 @@ en:
   label_last: 'Last'
   label_no_results_found: 'No results found'
   field_location: 'Location'
-  permission_rfb_file_bucket_view: 'View files'
-  permission_rfb_file_bucket_configure: 'Manage settings'
+  permission_rfb_file_bucket: 'Manage RFB attachment settings'
+  permission_rfb_file_bucket_view: 'View RFB attachments'
   redmine_file_bucket:
     settings:
       header: 'File List Settings'

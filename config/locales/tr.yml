@@ -5,8 +5,8 @@ tr:
   label_last: 'Son'
   label_no_results_found: 'Sonuç bulunamadı'
   field_location: 'Konum'
-  permission_rfb_file_bucket_view: 'Dosyaları görüntüle'
-  permission_rfb_file_bucket_configure: 'Ayarları yönet'
+  permission_rfb_file_bucket: 'RFB Eklenti ayarlarını yönet'
+  permission_rfb_file_bucket_view: 'RFB Eklentileri görüntüle'
   redmine_file_bucket:
     settings:
       header: 'Dosya Listesi Ayarları'
