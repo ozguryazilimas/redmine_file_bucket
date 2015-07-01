@@ -60,11 +60,19 @@ module FileBucketHelper
         :location => link_to_attachment_container(file),
         :author => file.author.name,
         :created_on => format_time(file.created_on),
-        :downloads => file.downloads,
+        :downloads => download_count_for_attachment(file),
         :subproject => link_to_subproject_if_exist(file.project),
         :action => (link_to(image_tag('delete.png'), attachment_path(file), :data => {:confirm => l(:text_are_you_sure)}, :method => :delete) if @delete_allowed)
       }
     end.to_json
+  end
+
+  def download_count_for_attachment(attachment)
+    if attachment.container.is_a?(Version) || attachment.container.is_a?(Project)
+      attachment.downloads
+    else
+      attachment.downloads > 0 ? attachment.downloads : '-'
+    end
   end
 
 end
