@@ -35,10 +35,10 @@ class RfbProjectSetting < ActiveRecord::Base
   ]
 
   AVAILABLE_OPTIONS = ATTACHMENT_CONTENT_TYPES + PROJECT_OPTIONS
+  EDITABLE_ATTRS = AVAILABLE_OPTIONS.map{|k| "#{k.to_s}_enabled".to_sym}
 
 
-  attr_accessible :project_id, :subproject_enabled,
-    *ATTACHMENT_CONTENT_TYPES.map{|k| "#{k.to_s}_enabled".to_sym}
+  attr_accessible :project_id, *EDITABLE_ATTRS
 
 
   scope :for_project, ->(project) {
@@ -69,6 +69,14 @@ class RfbProjectSetting < ActiveRecord::Base
     end
 
     active_list
+  end
+
+  def self.sanitize_settings(settings)
+    EDITABLE_ATTRS.each do |attr|
+      settings[attr] = false if settings[attr].blank?
+    end
+
+    settings
   end
 
 end
