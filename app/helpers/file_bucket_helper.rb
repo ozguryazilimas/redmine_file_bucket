@@ -54,7 +54,7 @@ module FileBucketHelper
       {
         :container_type => file.container_type,
         :container_type_formatted => humanize_option_type(file.container_type),
-        :file_name => link_to_attachment(file, :download => true, :title => file.description, :title => file.content_type),
+        :file_name => link_to_attachment(file, :download => true, :title => file.content_type),
         :file_size => number_to_human_size(file.filesize),
         :description => file.description,
         :location => link_to_attachment_container(file),
