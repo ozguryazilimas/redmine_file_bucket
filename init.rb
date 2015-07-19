@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_file_bucket do
   name 'Redmine File Bucket plugin'
   author 'Onur Kucuk'
   description 'Redmine plugin to list all files together'
-  version '0.9.2'
+  version '1.0.0'
   url 'http://www.ozguryazilim.com.tr'
   author_url 'http://www.ozguryazilim.com.tr'
   requires_redmine :version_or_higher => '3.0.3'
