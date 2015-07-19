@@ -57,13 +57,16 @@ class RfbProjectSetting < ActiveRecord::Base
 
   def active_container_type
     active_list = []
-    user_perms = allowed_content_types_for_user(self.send(:project_id))
+    user = User.current
+    user_perms = allowed_content_types_for_user(self.send(:project_id), user)
+    allow_all = user_perms.blank? && User.current.admin?
 
     AVAILABLE_OPTIONS.each do |opt|
       symbolized = "#{opt.to_s}_enabled"
       container_type = opt.to_s.titleize.gsub(' ', '')
 
-      if self.send(symbolized) && (PROJECT_OPTIONS.include?(opt) || user_perms.include?(PERMISSION_FOR_CONTENT[opt]))
+      if self.send(symbolized) &&
+        (allow_all || PROJECT_OPTIONS.include?(opt) || user_perms.include?(PERMISSION_FOR_CONTENT[opt]))
         active_list << container_type
       end
     end

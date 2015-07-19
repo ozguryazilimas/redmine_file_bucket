@@ -14,7 +14,7 @@ class FileBucketController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render :json => prepare_attachments(@project, @container_type, @include_children)
+        render :json => @attachments
       }
     end
   end
@@ -30,49 +30,68 @@ class FileBucketController < ApplicationController
     container_type.each do |ct|
       case ct
       when 'Project'
-        where_arr << "container_type = 'Project' AND container_id IN (?)"
-
         if include_children
-          where_id_arr << project.self_and_descendants.ids
+          found_ids = project.self_and_descendants.ids
         else
-          where_id_arr << [project.id]
+          found_ids = [project.id]
+        end
+
+        if found_ids.present?
+          where_arr << "container_type = 'Project' AND container_id IN (?)"
+          where_id_arr << found_ids
         end
       when 'Issue'
-        where_arr << "container_type = 'Issue' AND container_id IN (?)"
-
         if include_children
-          where_id_arr << project.self_and_descendants.joins(:issues).pluck('issues.id')
+          found_ids = project.self_and_descendants.joins(:issues).pluck('issues.id')
         else
-          where_id_arr << project.issue_ids
+          found_ids = project.issue_ids
+        end
+
+        if found_ids.present?
+          where_arr << "container_type = 'Issue' AND container_id IN (?)"
+          where_id_arr << found_ids
         end
       when 'Document'
-        where_arr << "container_type = 'Document' AND container_id IN (?)"
-
         if include_children
-          where_id_arr << project.self_and_descendants.joins(:documents).pluck('documents.id')
+          found_ids = project.self_and_descendants.joins(:documents).pluck('documents.id')
         else
-          where_id_arr << project.document_ids
+          found_ids = project.document_ids
+        end
+
+        if found_ids.present?
+          where_arr << "container_type = 'Document' AND container_id IN (?)"
+          where_id_arr << found_ids
         end
       when 'News'
-        where_arr << "container_type = 'News' AND container_id IN (?)"
-
         if include_children
-          where_id_arr << project.self_and_descendants.joins(:news).pluck('news.id')
+          found_ids = project.self_and_descendants.joins(:news).pluck('news.id')
         else
-          where_id_arr << project.news_ids
+          found_ids = project.news_ids
+        end
+
+        if found_ids.present?
+          where_arr << "container_type = 'News' AND container_id IN (?)"
+          where_id_arr << found_ids
         end
       when 'WikiPage'
-        where_arr << "container_type = 'WikiPage' AND container_id IN (?)"
-
         if include_children
-          where_id_arr << project.self_and_descendants.joins(:wiki => :pages).pluck('wiki_pages.id')
+          found_ids = project.self_and_descendants.joins(:wiki => :pages).pluck('wiki_pages.id')
         else
-          where_id_arr << project.wiki.page_ids
+          found_ids = project.wiki.page_ids
+        end
+
+        if found_ids.present?
+          where_arr << "container_type = 'WikiPage' AND container_id IN (?)"
+          where_id_arr << found_ids
         end
       end
     end
 
-    Attachment.where(where_arr.join(' OR '), *where_id_arr)
+    if where_arr.blank? || where_id_arr.blank?
+      []
+    else
+      Attachment.where(where_arr.join(' OR '), *where_id_arr)
+    end
   end
 
 end
