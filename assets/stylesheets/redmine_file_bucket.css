@@ -36,6 +36,10 @@
   margin-bottom: 10px;
 }
 
+#rfb_file_bucket_length > label > select {
+  height: 30px;
+}
+
 /*
 select[name=rfb_file_bucket_length] {
   padding: 3px;
