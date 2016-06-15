@@ -58,9 +58,9 @@ var checked_containers = <%= raw @container_type.map{|k| humanize_option_type(k)
 
 
 <%= javascript_include_tag 'console_fallback', :plugin => 'redmine_file_bucket' %>
-<%= javascript_include_tag 'dataTables/jquery.dataTables' %>
+<%= javascript_include_tag 'dataTables/jquery.dataTables', :plugin => 'redmine_file_bucket' %>
 <%= javascript_include_tag 'redmine_file_bucket', :plugin => 'redmine_file_bucket' %>
 
-<%= stylesheet_link_tag 'dataTables/jquery.dataTables' %>
+<%= stylesheet_link_tag 'dataTables/jquery.dataTables', :plugin => 'redmine_file_bucket' %>
 <%= stylesheet_link_tag 'redmine_file_bucket', :plugin => 'redmine_file_bucket' %>
 
