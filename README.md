@@ -2,13 +2,13 @@
 Redmine projelerinde kullanılan modüller ile yüklenmiş dosyaların tek bir sayfadan görüntülenmesini sağlar. 
 
 ## Desteklenen Modüller:
-** İşler
-** Wiki Sayfaları
-** Belgeler
-** Projeler
-** Sürümler
-** Haberler
-** Altprojeler
+* İşler
+* Wiki Sayfaları
+* Belgeler
+* Projeler
+* Sürümler
+* Haberler
+* Altprojeler
 
 ## Özellikleri
 1. Alt projeleri de destekler. Ana proje üzerinden görüntülenen dosya listesine alt projelerdeki dosyalar da dahil edilebilir.
@@ -20,13 +20,13 @@ Redmine projelerinde kullanılan modüller ile yüklenmiş dosyaların tek bir s
 ## Ayarlar
 * Eklenti ayarlarına yönetici hesabı ile /settings/plugin/redmine_file_bucket adresinden ulaşılabilir.
 * Eklentinin bir liste oluşturabilmesi için tarayıp göstereceği modüller ayarlar sayfasından pasifleştirilebilir ya da etkinleştirilebilir. Aç/Kapa yapılabilecek modüllerin listesi:
-** İşler
-** Wiki Sayfaları
-** Belgeler
-** Projeler
-** Sürümler
-** Haberler
-** Altprojeler
+ ** İşler
+ ** Wiki Sayfaları
+ ** Belgeler
+ ** Projeler
+ ** Sürümler
+ ** Haberler
+ ** Altprojeler
 
 ## Kullanımı
 * Eklentiye /projects/proje_adi/file_bucket bağlantısından ulaşılabilir. Bu bağlantı proje menüsü üzerinde 'Eklentiler' ismiyle bulunabilir.
