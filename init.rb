@@ -1,3 +1,4 @@
+require 'redmine'
 require 'redmine_file_bucket'
 
 Redmine::Plugin.register :redmine_file_bucket do
