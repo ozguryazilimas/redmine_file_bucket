@@ -1,6 +1,5 @@
 
 class FileBucketController < ApplicationController
-  unloadable
 
   before_filter :find_project_by_project_id, :only => [:index]
   before_filter :authorize

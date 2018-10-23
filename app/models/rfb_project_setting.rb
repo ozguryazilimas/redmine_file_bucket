@@ -1,6 +1,5 @@
 
 class RfbProjectSetting < ActiveRecord::Base
-  unloadable
 
   LOCALIZED_OPTION_TYPE = {
     'Subproject' => :label_subproject_plural,
