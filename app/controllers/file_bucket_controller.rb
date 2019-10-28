@@ -1,8 +1,8 @@
 
 class FileBucketController < ApplicationController
 
-  before_filter :find_project_by_project_id, :only => [:index]
-  before_filter :authorize
+  before_action :find_project_by_project_id, :only => [:index]
+  before_action :authorize
 
   def index
     settings = RfbProjectSetting.settings_for_project(@project)
