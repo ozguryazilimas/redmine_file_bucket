@@ -37,7 +37,7 @@ class RfbProjectSetting < ActiveRecord::Base
   EDITABLE_ATTRS = AVAILABLE_OPTIONS.map{|k| "#{k.to_s}_enabled".to_sym}
 
 
-  attr_accessor :project_id, *EDITABLE_ATTRS
+  # attr_accessor :project_id, *EDITABLE_ATTRS
 
 
   scope :for_project, ->(project) {
