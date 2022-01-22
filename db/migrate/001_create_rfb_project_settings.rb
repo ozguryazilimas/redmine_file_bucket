@@ -1,4 +1,4 @@
-class CreateModelBase < ActiveRecord::Migration[4.2]
+class CreateRfbProjectSettings < ActiveRecord::Migration[4.2]
 
   def change
     create_table :rfb_project_settings do |t|
