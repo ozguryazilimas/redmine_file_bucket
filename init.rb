@@ -1,5 +1,5 @@
 require 'redmine'
-require 'redmine_file_bucket'
+require_dependency File.join(File.dirname(__FILE__), 'lib/redmine_file_bucket')
 
 Redmine::Plugin.register :redmine_file_bucket do
   name 'Redmine File Bucket plugin'
