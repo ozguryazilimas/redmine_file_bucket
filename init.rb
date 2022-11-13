@@ -36,7 +36,8 @@ Redmine::Plugin.register :redmine_file_bucket do
     }
 end
 
-Rails.configuration.to_prepare do
+# Rails.configuration.to_prepare do
+RedmineApp::Application.config.after_initialize do
   [
     [ProjectsController, RedmineFileBucket::Patches::ProjectsControllerPatch],
     [ProjectsHelper, RedmineFileBucket::Patches::ProjectsHelperPatch],
