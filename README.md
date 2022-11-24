@@ -5,6 +5,8 @@ It allows you to see files loaded with modules that use in Redmine projects in o
 
 This plugin is compatible with Redmine 4.x. If you want to use it with Redmine 3.x please use redmine3 branch.
 
+Compatible with Redmine 4.x and 5.x.
+
 
 ## Supported Modules
 ** Issues
@@ -46,5 +48,10 @@ This plugin is compatible with Redmine 4.x. If you want to use it with Redmine 3
 * To filtrate file list,you can use selection boxes on the upper section.For example, if you do not want to show subprojects' files, 'sub-projects' option should not be selected. 
 * For filtering by file format, write eg. '.jpg' in the search box. In this case, the files in jpg format are listed. If abcd is written in the search box, files that include 'abcd' are listed.
 * To remove any file, you can click on the trash icon at the end of the line. This operation also deletes the file where it is added (for example issue).
+
+
+## License
+
+Copyright (c) 2015, Onur Küçük. Licensed under [GNU GPLv2](LICENSE)
 
 

@@ -1,5 +1,8 @@
 # File Bucket
-Redmine projelerinde kullanılan modüller ile yüklenmiş dosyaların tek bir sayfadan görüntülenmesini sağlar. 
+
+Redmine projelerinde kullanılan modüller ile yüklenmiş dosyaların tek bir sayfadan görüntülenmesini sağlar.
+
+Redmine 4.x ve 5.x uyumludur.
 
 ## Desteklenen Modüller:
 * İşler
@@ -35,4 +38,9 @@ Redmine projelerinde kullanılan modüller ile yüklenmiş dosyaların tek bir s
 * Dosya listesinde filtreleme yapmak için üst bölümde bulunan seçim kutuları kullanılabilir. Örneğin listede alt projelere eklenen dosyaların gösterilmesi istenmiyorsa 'alt projeler' seçeneği kapatılmalıdır.
 * Dosya formatına göre filtreleme yapmak için arama kutusuna örn. '.jpg' yazılabilir.Bu durumda liste sadece jpg formatındaki dosyaların görüntülenmesi için filtrelenecektir.Eğer arama kutusuna abcd yazılırsa adında abcd geçen dosyalar listelenir.
 * Herhangi bir dosyayı kaldırmak için, satır sonunda bulunan çöp kutusu simgesine tıklanabilir. Bu silme işlemi dosyayı eklendiği yerden de (örneğin bir iş kaydı) silecektir.
+
+## License
+
+Copyright (c) 2015, Onur Küçük. lisansı [GNU GPLv2](LICENSE)
+
 
